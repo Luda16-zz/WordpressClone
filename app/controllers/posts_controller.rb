@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+	before_action :authenticate_user!, except: [:index, :show]
+	
 	def index
-		@post = Post.all.order('created_at DESC') #Mostrar post por fecha de creacion descendiente
+		@posts = Post.all.order('created_at DESC')
 	end
 
 	def new
@@ -8,26 +10,21 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.new(post_params) 	#Creando nuevo objeto post con sus respectivos parametros
+		@post = Post.new(post_params)
 		
-		if @post.save					#Si se guarda el post, redirigir al post mismo, de lo contrario ir a crear uno nuevo
-			redirect_to @post
+		if @post.save
+			redirect_to @post 
 		else
 			render 'new'
 		end
-
-		redirect_to @post
 	end
 
-
 	def show
-		@post = Post.find(params[:id]) #Encontrar por parametro id
-		
+		@post = Post.find(params[:id])
 	end
 
 	def edit
 		@post = Post.find(params[:id])
-		
 	end
 
 	def update
@@ -38,7 +35,6 @@ class PostsController < ApplicationController
 		else
 			render 'edit'
 		end
-	
 	end
 
 	def destroy
@@ -47,9 +43,10 @@ class PostsController < ApplicationController
 		redirect_to root_path
 	end
 
+
 	private
 
 	def post_params
-		params.require(:post).permit(:title, :body)         #Parametros de post 
+		params.require(:post).permit(:title, :body)
 	end
 end
