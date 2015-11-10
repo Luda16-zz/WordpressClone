@@ -4,11 +4,17 @@ class PostsController < ApplicationController
 	end
 
 	def new
+		@post = Post.new
 	end
 
 	def create
-		@post = Post.new(post_params) #Creando nuevo objeto post con sus respectivos parametros
-		@post.save
+		@post = Post.new(post_params) 	#Creando nuevo objeto post con sus respectivos parametros
+		
+		if @post.save					#Si se guarda el post, redirigir al post mismo, de lo contrario ir a crear uno nuevo
+			redirect_to @post
+		else
+			render 'new'
+		end
 
 		redirect_to @post
 	end
