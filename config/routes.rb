@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   root "posts#index"          #Index es la pagina raiz de la app
 
+  get '/about', to: 'pages#about' #Changing to dynamic page
 end
