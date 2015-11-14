@@ -1,5 +1,3 @@
-This Wordpress Blog clone was built in Ruby on Rails for a tutorial. 
+This Wordpress Blog clone was built in Ruby on Rails. 
 It allows the user to create posts (as well as edit and delete them). 
 A visitor can comment on the posts. There are static pages and most styling is custom albeit with a little Bootstrap.
-
-More info/tutorials at www.crashlearner.com
